@@ -1,0 +1,20 @@
+{
+  "name": "chronotek-pro-agent",
+  "displayName": "Chronotek Pro Agent",
+  "version": "1.0.0",
+  "description": "Connect Cursor to Chronotek Pro to review workforce activity, schedules, timecards and attendance issues, and perform permitted actions with explicit approval. Requires an eligible Chronotek Pro account.",
+  "author": {
+    "name": "The Chrono-Tek Company, Inc."
+  },
+  "homepage": "https://www.chronotek.com",
+  "license": "Proprietary",
+  "logo": "assets/icon.png",
+  "keywords": [
+    "chronotek",
+    "chronotek pro",
+    "chronotek pro agent"
+  ],
+  "category": "productivity",
+  "mcpServers": "mcp.json",
+  "repository": "https://github.com/Chrono-Tek/chronotek-cursor-plugin"
+}
