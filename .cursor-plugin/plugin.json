@@ -7,7 +7,7 @@
     "name": "The Chrono-Tek Company, Inc."
   },
   "homepage": "https://www.chronotek.com",
-  "license": "Proprietary",
+  "license": "Apache-2.0",
   "logo": "assets/icon.png",
   "keywords": [
     "chronotek",
