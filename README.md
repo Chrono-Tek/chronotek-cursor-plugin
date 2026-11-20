@@ -16,19 +16,27 @@ The configuration uses public OAuth client `chronotek-cursor` with PKCE and no c
 
 Requested scopes are `agent.read`, `agent.write` and `offline_access`. They permit authorized reads, permitted writes and token refresh; they do not grant access beyond the connected account. For a local read-only configuration, omit `agent.write` before connecting and review the resulting consent. A new authorization may replace an existing Chronotek agent installation for that same user after explicit confirmation.
 
-## MCP 9.0 tool consolidation
+## Certified MCP 9.1 compatibility
 
-MCP 9.0 consolidates related operations into smaller selector-based tool families. Cursor discovers the current tools and their schemas from the hosted service; `get_agent_context` is the authoritative inventory for the connected account. Do not infer access from a role or rely on a tool or selector branch that is absent from that response.
+Package 1.0.1 is aligned with the deployed Chronotek Agent MCP 9.1.0 contract. The certification baseline is production artifact `2026.11.20.5`, built from Agent `main` commit `5db46d80720f85a851ba88c6afd317ee26b0bc39`, with capability catalog `2026-11-19.1`, semantic catalog 7.1.0, supervisor guide 3.2.0 and administrator guide 2.3.0. A fully enabled region administrator can discover 55 tools (34 read and 21 write), 87 capability branches and 138 definitions. Other connected accounts receive only their effective subset.
 
-Existing natural-language requests continue to work, but saved prompts or workflows that name retired tools should use the consolidated family instead. Common migrations include:
+Cursor discovers the current tools and their schemas from the hosted service; `get_agent_context` is the authoritative inventory for the connected account. Do not infer access from a role or rely on a tool or selector branch that is absent from that response. See the machine-readable [certification evidence](certification.json) for the exact package and deployed-source baseline.
+
+MCP 9.0 introduced the smaller selector-based tool families. Existing natural-language requests continue to work, but saved prompts or workflows that name retired tools should use the consolidated family instead. Common migrations include:
 
 | Earlier tools | MCP 9.0 tool |
 |---|---|
 | `get_agent_profile`, `get_chronotek_capabilities` | `get_agent_context` |
 | `get_own_profile`, `get_own_notification_profile` | `get_own_settings` with the appropriate `section` |
 | `get_roster`, `get_employee_detail`, `get_employee_app_settings` | `get_employees` with the appropriate `operation` |
-| `get_job_detail`, `get_job_instructions`, `get_job_alarm_codes`, `get_timetiles` | `get_job` with the appropriate `section` |
+| `get_job_detail`, `get_job_alarm_codes`, `get_timetiles` | `get_job` with the appropriate `section` |
 | `get_message_destinations`, `get_messages`, `get_required_read_messages` | `get_messaging` with the appropriate `view` |
+
+MCP 9.1 adds three important workflows while preserving the same endpoint, OAuth resource and scopes:
+
+- **Connected human's own language:** read `get_own_settings` with `section=language`, then use `update_own_settings` with the same section only after the user approves the exact canonical language. This route never accepts an employee ID.
+- **Managed employee language and Mobile App Settings:** read `get_employees` with `operation=detail` or `operation=app_settings`. `update_employee` keeps `section=language` and `section=app_settings` independent. App Settings changes always include the complete three-value TimeTile scan state. Never substitute this route for the connected human's own-language route.
+- **Directional trip settings:** eligible company and region administrators can read one exact ordered route with `get_trip_settings` and change its shared defaults with `manage_trip_settings`. Raise a route-default suggestion only while working with travel, never in a check-in, and only after at least three trips on the same directional route. Show the direction, current defaults, estimate, buffer and exact proposed values; wait for approval; write once; and read the same route back. A timecard review, correction or approval does not authorize a shared trip-setting change.
 
 After the hosted service is upgraded, restart Cursor or run **Developer: Reload Window** before testing so Cursor refreshes cached tool definitions. Reconnection is needed only when Cursor reports an authorization problem; a tool-schema update alone does not require granting new OAuth scopes.
 
