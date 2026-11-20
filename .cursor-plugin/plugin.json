@@ -1,7 +1,7 @@
 {
   "name": "chronotek-pro-agent",
   "displayName": "Chronotek Pro Agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Connect Cursor to Chronotek Pro to review workforce activity, schedules, timecards and attendance issues, and perform permitted actions with explicit approval. Requires an eligible Chronotek Pro account.",
   "author": {
     "name": "The Chrono-Tek Company, Inc."

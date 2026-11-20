@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "evidenceRecordedAt": "2026-11-20",
+  "package": {
+    "name": "chronotek-pro-agent",
+    "version": "1.0.1"
+  },
+  "agent": {
+    "repository": "Chronotek.Services.Agent",
+    "branch": "main",
+    "commit": "5db46d80720f85a851ba88c6afd317ee26b0bc39",
+    "artifact": "2026.11.20.5",
+    "mcpVersion": "9.1.0",
+    "capabilityCatalogVersion": "2026-11-19.1",
+    "semanticCatalogVersion": "7.1.0",
+    "supervisorGuideVersion": "3.2.0",
+    "administratorGuideVersion": "2.3.0",
+    "inventory": {
+      "tools": 55,
+      "readTools": 34,
+      "writeTools": 21,
+      "capabilityBranches": 87,
+      "definitions": 138,
+      "profile": "fully enabled region administrator"
+    }
+  },
+  "oauth": {
+    "resource": "https://admin.mychronotek.com/mcp",
+    "authorizationServer": "https://auth.mychronotek.com/",
+    "clientId": "chronotek-cursor",
+    "scopes": [
+      "agent.read",
+      "agent.write",
+      "offline_access"
+    ]
+  },
+  "validation": {
+    "sourceRevisionVerified": true,
+    "productionArtifactVerified": true,
+    "packageValidation": "passed",
+    "mcpInspectorCertification": {
+      "status": "passed",
+      "toolsReturned": 55,
+      "expectedTools": 55,
+      "exactInventoryMatch": true,
+      "schemaErrors": 0,
+      "schemaWarnings": 2671,
+      "toolsWithSchemaWarnings": 53,
+      "representativeReadOnlyCalls": "not performed"
+    },
+    "cursorClientCertification": "not performed; owner approved MCP Inspector as the substitute"
+  }
+}
